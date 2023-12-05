@@ -1,0 +1,159 @@
+<div class="container">
+    <h1 class="text-center">Sign up</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- <div class="col">
+            <form [formGroup]="form">
+                <div formGroupName="userInfo">
+                    <div class="form-group">
+                        <label for="username">Nome</label>
+                        <input type="text" name="username" id="username" class="form-control" formControlName="username">
+                        <span *ngIf="getFormC('userInfo.username')?.invalid && getFormC('userInfo.username')?.touched">
+                        <ng-container *ngIf="getErrorsC('userInfo.username', 'required')">Campo Nome obbligatorio</ng-container>
+                        <ng-container *ngIf="getErrorsC('userInfo.username', 'usernameProibito')">Nome non consentito</ng-container>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" formControlName="email">
+                        <span *ngIf="getFormC('userInfo.email')?.touched && getFormC('userInfo.email')?.invalid">
+                            <ng-container *ngIf="getErrorsC('userInfo.email', 'required')">Campo Email obbligatorio</ng-container>
+                        <ng-container *ngIf="getErrorsC('userInfo.email', 'usernameProibito')">Email non consentito</ng-container>
+                        </span>
+                    </div>
+                </div>
+                <div class="radio" *ngFor="let genere of generi">
+                    <label>
+                        <input type="radio" formControlName="genere" [value]="genere"> {{genere}}
+                    </label>
+                </div>
+                <div class="mb-3" formArrayName="sports">
+                    <h3>I miei sports preferiti</h3>
+                    <button type="button" class="btn btn-success" (click)="addSports()">Aggiungi sport</button>
+                    <div class="form-group mb-2" *ngFor="let sportC of getSportsC(); let i = index">
+                        <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Invia</button>
+            </form>
+        </div> -->
+        <div class="col">
+
+            <form [formGroup]="form">
+                <div formGroupName="userInfo">
+                    <div class="form-group">
+                        <label for="userFName">Nome</label>
+                        <input type="text" name="userFName" id="userFName"
+                            class="form-control" formControlName="userFName">
+                        <span
+                            *ngIf="getFormC('userInfo.userFName')?.invalid && getFormC('userInfo.userFName')?.touched">
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.userFName', 'required')">Campo
+                                Nome obbligatorio</ng-container>
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.userFName', 'usernameProibito')">Nome
+                                non consentito</ng-container>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="userLName">Cognome</label>
+                        <input type="text" name="userLName" id="userLName"
+                            class="form-control" formControlName="userLName">
+                        <span
+                            *ngIf="getFormC('userInfo.userLName')?.invalid && getFormC('userInfo.userLName')?.touched">
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.userLName', 'required')">Campo
+                                Cognome obbligatorio</ng-container>
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.userLName', 'usernameProibito')">Cognome
+                                non consentito</ng-container>
+                        </span>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email"
+                            class="form-control" formControlName="email">
+                        <span
+                            *ngIf="getFormC('userInfo.email')?.touched && getFormC('userInfo.email')?.invalid">
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.email', 'required')">Campo
+                                Email obbligatorio</ng-container>
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.email', 'usernameProibito')">Email
+                                non consentito</ng-container>
+                        </span>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" id="password"
+                            class="form-control" formControlName="password">
+                        <span
+                            *ngIf="getFormC('userInfo.password')?.touched && getFormC('userInfo.password')?.invalid">
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.password', 'required')">Campo
+                                password obbligatorio</ng-container>
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.password', 'pRegex')">password
+                                non conforme. Devono esserci almeno: 1 lettera maiuscola, 1 minuscola, 1 numero</ng-container>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confermaPassword">Conferma Password</label>
+                        <input type="text" name="confermaPassword" id="confermaPassword"
+                            class="form-control" formControlName="confermaPassword">
+                        <span
+                            *ngIf="getFormC('userInfo.confermaPassword')?.touched && getFormC('userInfo.confermaPassword')?.invalid">
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.confermaPassword', 'required')">Campo
+                                Conferma Password obbligatorio</ng-container>
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.confermaPassword', 'pRegex')">password
+                                non conforme. Devono esserci almeno: 1 lettera maiuscola, 1 minuscola, 1 numero</ng-container>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <span>Genere</span>
+                    <select name="generi" id="generi" class="form-select">
+                        <option value></option>
+                        <option *ngFor="let genere of generi" value="genere">{{genere}}</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="immagineP">ImmagineP</label>
+                        <input type="file" name="immagineP" id="immagineP" class="form-control" formControlName="immagineP">                                    
+                    </div>
+                    <div class="form-group">
+                        <label for="biografia">Biografia</label>
+                        <textarea name="biografia" id="biografia" class="form-control" rows="1" formControlName="biografia" placeholder="Inserici la tua bio"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" name="nickname" id="nickname"
+                            class="form-control" formControlName="nickname">
+                        <span
+                            *ngIf="getFormC('userInfo.nickname')?.invalid && getFormC('userInfo.nickname')?.touched">
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.nickname', 'required')">Campo
+                                Nickname obbligatorio</ng-container>
+                            <ng-container
+                                *ngIf="getErrorsC('userInfo.nickname', 'usernameProibito')">nickname
+                                non consentito</ng-container>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- <div class="mb-3" formArrayName="sports">
+                    <h3>I miei sports preferiti</h3>
+                    <button type="button" class="btn btn-success" (click)="addSports()">Aggiungi sport</button>
+                    <div class="form-group mb-2" *ngFor="let sportC of getSportsC(); let i = index">
+                        <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                </div> -->
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="form.invalid" (click)="submit()">Invia</button>
+            </form>
+
+        </div>
+    </div>
+</div>
